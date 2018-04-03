@@ -1,0 +1,29 @@
+.heading{
+    display: block;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    padding: 35px 0px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 40px;
+}
+.glyphicon{
+    color: #00b4ef;
+}
+.list-block{
+    display: block;
+    height: 41.6px;
+}
+.list-group-item{
+    float: left;
+    width: 90%;
+}
+.list-btn{
+    float: right;
+    width: 5%;
+    height: inherit;
+}
+.add-tp-radio{
+    float: left;
+    font-size: 15px;
+}

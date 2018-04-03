@@ -1,0 +1,16 @@
+.glyphicon{
+    color: #00b4ef;
+}
+.heading{
+    display: block;
+    font-size: 35px;
+    font-weight: 700;
+    text-align: center;
+    padding: 35px 0px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 40px;
+}
+label .share{
+    font-size: 20px;
+    padding: 3px;
+}

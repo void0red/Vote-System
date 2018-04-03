@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ li.title }}</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/manageBase.css">
+    <script src="../static/js/jquery-3.3.1.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+                <span class="sr-only"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">vote system</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+            <div class="nav navbar-nav navbar-right">
+                <li><a href="/"><span class="glyphicon glyphicon-home"></span> Index</a></li>
+                <li><a href="/manager"><span class="glyphicon glyphicon-cog"></span> {{ li.email }}</a></li>
+                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <div class="heading">{{ li.title }}</div>
+            <form role="form">
+                <div class="form-group">
+                    <label>分享<a href="/tp/{{ li.link }}">链接</a>进行投票:</label>
+                    <input type="text" class="form-control" name="share_link" value="{{ li.link }}">
+                </div>
+            </form>
+            <div class="list-num">你共有{{ li.num }}个投票项({{ li.category }})已投{{ li.sum }}票</div>
+            <div class="list-group">
+                {% for x in li.info %}
+                <div class="list-group-item">{{ x.content }}
+                    <span class="badge">{{ x.value }}票</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

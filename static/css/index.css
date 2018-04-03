@@ -1,0 +1,24 @@
+.heading{
+    display: block;
+    font-size: 35px;
+    text-align: center;
+    font-weight: 700;
+    padding: 35px 0px;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 40px;
+}
+.btn{
+    font-size: 25px;
+    color: #fff;
+    background: #00b4ef;
+    border-radius: 30px;
+    padding: 10px 0px;
+    width: 80%;
+    border: none;
+    text-transform: capitalize;
+    transition: all 0.5s ease 0s;
+    margin: 30px 30px;
+}
+.glyphicon{
+    color: #00b4ef;
+}
