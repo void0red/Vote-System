@@ -95,7 +95,7 @@ def manager():
                 return redirect(url_for('manager'))
 
 
-@app.route('/<title_hash>')
+@app.route('/user/<title_hash>')
 def resolve_title_hash(title_hash):
     if not session.get('email'):
         return '''<script>alert("hasn't login");window.location.href='/login'</script>'''
@@ -121,10 +121,20 @@ def share_link_tp(title_hash):
             session[title_hash] = 'guest'
             id = request.form.get('id')
             t.tp(id)
-            return '''<script>alert('vote success!');window.location.href='#'</script>'''
+            return '''<script>alert('vote success!');window.location.href='/'</script>'''
         elif session.get(title_hash) == 'guest':
-            return '''<script>alert('you have voted!');window.location.href='#'</script>'''
+            return '''<script>alert('you have voted!');window.location.href='/'</script>'''
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html')
+
+
+@app.errorhandler(500)
+def server_error(e):
+    return render_template('404.html')
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

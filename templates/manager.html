@@ -76,7 +76,7 @@
             <div class="list-group">
                 {% for x in li.info %}
                 <div class="list-block">
-                    <a class="list-group-item" href=/{{ x.hash }}>{{ x.title }}</a>
+                    <a class="list-group-item" href=/user/{{ x.hash }}>{{ x.title }}</a>
                     <button class="btn btn-default list-btn" id={{ x.hash }} onclick="removeTP(this)">
                         <span class="glyphicon glyphicon-remove"></span>
                     </button>

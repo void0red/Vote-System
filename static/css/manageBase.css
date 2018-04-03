@@ -14,3 +14,11 @@ label .share{
     font-size: 20px;
     padding: 3px;
 }
+.img{
+    width: inherit;
+}
+.text-center{
+    font-size: 40px;
+    color: #00b4ef;
+    margin-bottom: 20px;
+}

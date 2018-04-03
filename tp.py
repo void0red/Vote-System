@@ -74,14 +74,16 @@ class TP:
             return None
 
     def tp(self, id):
-        id = id.split(',')
-        re = []
-        for x in id:
-            re.append(self.cur.execute('''select NUM from BALLOT where ID = ?''', (x,)).fetchall()[0][0])
-        args = []
-        for x in range(len(id)):
-            args.append((int(re[x]) + 1, id[x]))
-        print(args)
-        self.cur.executemany('''update BALLOT set NUM = ? where ID = ?''', args)
-        self.con.commit()
+        try:
+            id = id.split(',')
+            re = []
+            for x in id:
+                re.append(self.cur.execute('''select NUM from BALLOT where ID = ?''', (x, )).fetchall()[0][0])
+            args = []
+            for x in range(len(id)):
+                args.append((int(re[x]) + 1, id[x]))
+            self.cur.executemany('''update BALLOT set NUM = ? where ID = ?''', args)
+            self.con.commit()
+        except:
+            return None
 
