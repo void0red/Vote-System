@@ -26,8 +26,6 @@
         <div class="collapse navbar-collapse" id="navbar-collapse">
             <div class="nav navbar-nav navbar-right">
                 <li><a href="/"><span class="glyphicon glyphicon-home"></span> Index</a></li>
-                <li><a href="/manager"><span class="glyphicon glyphicon-cog"></span> {{ li.email }}</a></li>
-                <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
             </div>
         </div>
     </div>
@@ -35,14 +33,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-2 col-md-8">
-            <div class="heading">{{ li.title }}</div>
-            <form role="form">
-                <div class="form-group">
-                    <label>分享<a href="/tp/{{ li.link }}">链接</a>进行投票:</label>
-                    <input type="text" class="form-control" name="share_link" id = "share_link" onfocus="this.select();">
-                </div>
-            </form>
-            <div class="list-num">你共有{{ li.num }}个投票项({{ li.category }})已投{{ li.sum }}票</div>
+            <div class="heading" style="color: #00b4ef">{{ li.title }}<br>感谢您投出宝贵的一票</div>
             <div class="list-group">
                 {% for x in li.info %}
                 <div class="list-group-item">{{ x.content }}
@@ -56,9 +47,6 @@
 <div class="container" id="chart" style="width: 100%; height: 400px"></div>
 </body>
 <script>
-    window.onload = function() {
-        $("#share_link").val(window.location.href.replace('user', 'tp'));
-    };
     var chart = echarts.init(document.getElementById("chart"), 'macarons');
     window.onresize = function(){
         chart.resize()

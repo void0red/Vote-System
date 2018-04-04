@@ -87,3 +87,10 @@ class TP:
         except:
             return None
 
+    def get_result_info(self, title_hash):
+        r1 = self.cur.execute('''select CONTENT, NUM from BALLOT where TITLE_HASH = ?''', (title_hash,)).fetchall()
+        title = self.cur.execute('''select TITLE from TP where TITLE_HASH = ?''', (title_hash,)).fetchall()[0][0]
+        li = {'info': [], 'title': title}
+        for x in r1:
+            li['info'].append({'content': x[0], 'value': x[1]})
+        return li

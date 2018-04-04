@@ -117,13 +117,14 @@ def share_link_tp(title_hash):
         else:
             return render_template('404.html'), 404
     else:
+        l = t.get_result_info(title_hash)
         if session.get(title_hash) is None:
             session[title_hash] = 'guest'
             id = request.form.get('id')
             t.tp(id)
-            return '''<script>alert('vote success!');window.location.href='/'</script>'''
+            return render_template('resultBase.html', li=l)
         elif session.get(title_hash) == 'guest':
-            return '''<script>alert('you have voted!');window.location.href='/'</script>'''
+            return render_template('resultBase.html', li=l)
 
 
 @app.errorhandler(404)
