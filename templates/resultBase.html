@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../static/css/manageBase.css">
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
-    <script src="../static/js/echarts.simple.min.js"></script>
+    <script src="../static/js/echarts.min.js"></script>
     <script src="../static/js/macarons.js"></script>
 </head>
 <body>
@@ -64,7 +64,7 @@
                 label: {
                     position: 'inner',
                     normal: {
-                        formatter: '{b}: {c}票: ({d}%)',
+                        formatter: '{b}: {c}票: ({d}%)'
                     }
                 },
                 data:[
@@ -73,7 +73,10 @@
                     {% endfor %}
                 ]
             }
-        ]
+        ],
+        tooltip: {
+            formatter: '{b}: {c}票: ({d}%)'
+        }
     })
 </script>
 </html>
