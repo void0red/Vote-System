@@ -4,7 +4,7 @@
 
 ## Catalog
 
-````d
+```
 .
 ├── emample.db
 ├── LICENSE
