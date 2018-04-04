@@ -61,6 +61,11 @@
                 name: '{{ li.title }}',
                 type: 'pie',
                 radius: '80%',
+                label: {
+                    normal: {
+                        formatter: '{b}: {c}票: ({d}%)',
+                    }
+                },
                 data:[
                     {% for x in li.info %}
                     {value: '{{ x.value }}', name: '{{ x.content }}'},
