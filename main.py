@@ -3,11 +3,14 @@ import os
 from user import User
 from tp import TP
 from hashlib import md5
+from time import time
 
 
 def get_md5(tar):
     return md5(bytes(str(tar), encoding='utf-8')).hexdigest()
 
+def get_time_tip():
+    return str(int(time()*1000))
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(10)
@@ -86,7 +89,7 @@ def manager():
                 title = request.form.get('title')
                 content = request.form.get('content')
                 category = request.form.get('category')
-                title_hash = get_md5(session['email'] + title)
+                title_hash = get_md5(session['email'] + title + get_time_tip())
                 t.add(title, title_hash, category, content, session['email'])
                 return redirect(url_for('manager'))
             elif ssid == '0':
