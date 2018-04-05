@@ -6,7 +6,7 @@
 
 ```
 .
-├── emample.db
+├── example.db
 ├── LICENSE
 ├── main.py
 ├── README.md
