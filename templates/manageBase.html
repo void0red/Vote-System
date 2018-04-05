@@ -10,6 +10,7 @@
     <script src="../static/js/bootstrap.min.js"></script>
     <script src="../static/js/echarts.min.js"></script>
     <script src="../static/js/macarons.js"></script>
+    <script src="../static/js/qrcode.min.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
@@ -38,7 +39,21 @@
             <div class="heading">{{ li.title }}</div>
             <form role="form">
                 <div class="form-group">
-                    <label>分享<a href="/tp/{{ li.link }}">链接</a>进行投票:</label>
+                    <label>分享<a href="/tp/{{ li.link }}">链接</a>或
+                        <a data-toggle="modal" data-target="#modal">二维码</a>
+                        <div id="modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-body">
+                                        <div id="qrcode"></div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        进行投票:</label>
                     <input type="text" class="form-control" name="share_link" id = "share_link" onfocus="this.select();">
                 </div>
             </form>
@@ -57,7 +72,10 @@
 </body>
 <script>
     window.onload = function() {
-        $("#share_link").val(window.location.href.replace('user', 'tp'));
+        var url = window.location.href.replace('user', 'tp');
+        $("#share_link").val(url);
+        new QRCode(document.getElementById("qrcode"), url);
+        jQuery($("#qrcode").children()[1]).addClass("img-responsive center-block");
     };
     var chart = echarts.init(document.getElementById("chart"), 'macarons');
     window.onresize = function(){
