@@ -54,7 +54,7 @@
 
 1. 建议使用`virtualenv` 配置python3运行虚拟环境：
 
-   `virtualenv vnev -p {your python3 path}`
+   `virtualenv venv -p {your python3 path}`
 
 2. 使用配置文件安装依赖：
 
