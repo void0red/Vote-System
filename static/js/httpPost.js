@@ -18,6 +18,6 @@ function enc(s) {
     return $.md5(t).substr(0, 5);
 }
 function refree() {
-    $("#verify").attr('src', 'static/pic/verify.png?a=' + Math.random() * 1000);
-    location.reload()
+    $("#verify").attr('src', 'static/pic/verify.png?rand=' + Math.random());
+    location.reload();
 }
