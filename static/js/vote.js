@@ -2,7 +2,8 @@ function vote() {
     var id = checkVote();
     var url = window.location.href;
     var title_hash = url.split('/').pop();
-    httpPost('/tp/' + title_hash, {'id': id});
+    var key = $("#verify").val();
+    httpPost('/tp/' + title_hash, {'id': id, 'key': key.toLocaleUpperCase(), 'enc': enc(key)});
 }
 function checkVote(){
     var obj = document.getElementsByName('shareOption');

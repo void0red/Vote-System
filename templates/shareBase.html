@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../static/css/manageBase.css">
     <script src="../static/js/jquery-3.3.1.min.js"></script>
     <script src="../static/js/bootstrap.min.js"></script>
+    <script src="../static/js/md5.js"></script>
     <script src="../static/js/httpPost.js"></script>
     <script src="../static/js/vote.js"></script>
 </head>
@@ -42,6 +43,10 @@
                 <label class="share"><input type="{{ x.category }}" value="{{ x.id }}" name="shareOption">{{ x.content }}</label>
             </div>
             {% endfor %}
+            <div class="form-group">
+                <img src="../static/pic/verify.png" class="img-responsive img-thumbnail pull-left" style="width: 50%; height: 50%" onclick="refree()">
+                <input type="text" class="form-control pull-right" id="verify" style="width: 50%" placeholder="verify">
+            </div>
             <button type="button" class="btn btn-primary pull-right" onclick="vote()">提交</button>
         </div>
     </div>

@@ -16,7 +16,8 @@
             var email = $("#emailValue").val();
             var password = $("#passwordValue").val();
             var passwd = $.md5(password);
-            httpPost("/register", {'email': email, 'password': passwd});
+            var key = $("#verify").val();
+            httpPost("/register", {'email': email, 'password': passwd, 'key': key.toLocaleUpperCase(), 'enc': enc(key)});
         }
     </script>
 </head>
@@ -55,6 +56,10 @@
                 <div class="form-group">
                     <input type="password" class="form-control" id="rePasswordValue" placeholder="repassword" onchange="checkRePassword()">
                     <div id="rePasswordError"></div>
+                </div>
+                <div class="form-group">
+                    <img src="../static/pic/verify.png" class="img-responsive img-thumbnail pull-left" style="width: 50%; height: 50%" onclick="refree()">
+                    <input type="text" class="form-control pull-right" id="verify" style="width: 50%" placeholder="verify">
                 </div>
                 <div class="form-group">
                     <span class="text">accept the <a href="#">rules</a></span>

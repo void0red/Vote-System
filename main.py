@@ -4,13 +4,16 @@ from user import User
 from tp import TP
 from hashlib import md5
 from time import time
+from verify import check, create
 
 
 def get_md5(tar):
     return md5(bytes(str(tar), encoding='utf-8')).hexdigest()
 
+
 def get_time_tip():
     return str(int(time()*1000))
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.urandom(10)
@@ -57,19 +60,25 @@ def logout():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
+        session['verify'] = create()
         return render_template('register.html')
     else:
-        email = request.form.get('email')
-        password = request.form.get('password')
-        u = User(email, password, app.config['DATABASE'])
-        check_id = u.check_user()
-        if check_id == 0:
-            return '''<script>alert("user has been existed");window.location.href='/login'</script>'''
-        elif check_id == 1:
-            u.add_user()
-            return redirect(url_for('login'))
+        key = request.form.get('key')
+        enc = request.form.get('enc')
+        if key != session['verify'].upper() or not check(key, enc):
+            return '''<script>alert("verify wrong");window.location.href='/register'</script>'''
         else:
-            return redirect(url_for('index'))
+            email = request.form.get('email')
+            password = request.form.get('password')
+            u = User(email, password, app.config['DATABASE'])
+            check_id = u.check_user()
+            if check_id == 0:
+                return '''<script>alert("user has been existed");window.location.href='/login'</script>'''
+            elif check_id == 1:
+                u.add_user()
+                return redirect(url_for('login'))
+            else:
+                return redirect(url_for('index'))
 
 
 @app.route('/manager', methods=['GET', 'POST'])
@@ -115,19 +124,25 @@ def share_link_tp(title_hash):
     t = TP(app.config['DATABASE'])
     li = t.get_share_info(title_hash)
     if request.method == 'GET':
+        session['verify'] = create()
         if li is not None:
             return render_template('shareBase.html', li=li)
         else:
             return render_template('404.html'), 404
     else:
-        l = t.get_result_info(title_hash)
-        if session.get(title_hash) is None:
-            session[title_hash] = 'guest'
-            id = request.form.get('id')
-            t.tp(id)
-            return render_template('resultBase.html', li=l)
-        elif session.get(title_hash) == 'guest':
-            return render_template('resultBase.html', li=l)
+        key = request.form.get('key')
+        enc = request.form.get('enc')
+        if key != session['verify'].upper() or not check(key, enc):
+            return render_template('shareBase.html', li=li)
+        else:
+            l = t.get_result_info(title_hash)
+            if session.get(title_hash) is None:
+                session[title_hash] = 'guest'
+                id = request.form.get('id')
+                t.tp(id)
+                return render_template('resultBase.html', li=l)
+            elif session.get(title_hash) == 'guest':
+                return render_template('resultBase.html', li=l)
 
 
 @app.errorhandler(404)
