@@ -6,9 +6,15 @@
 
 ```
 .
+├── data.db
+├── data_init.py
 ├── example.db
 ├── LICENSE
 ├── main.py
+├── __pycache__
+│   ├── tp.cpython-36.pyc
+│   ├── user.cpython-36.pyc
+│   └── verify.cpython-36.pyc
 ├── README.md
 ├── require.ini
 ├── static
@@ -20,6 +26,7 @@
 │   │   ├── manageBase.css
 │   │   └── manager.css
 │   ├── fonts
+│   │   ├── arial.ttf
 │   │   ├── glyphicons-halflings-regular.eot
 │   │   ├── glyphicons-halflings-regular.svg
 │   │   ├── glyphicons-halflings-regular.ttf
@@ -34,9 +41,11 @@
 │   │   ├── macarons.js
 │   │   ├── manager.js
 │   │   ├── md5.js
+│   │   ├── qrcode.min.js
 │   │   └── vote.js
 │   └── pic
-│       └── 404.jpg
+│       ├── 404.jpg
+│       └── verify.png
 ├── templates
 │   ├── 404.html
 │   ├── index.html
@@ -47,7 +56,8 @@
 │   ├── resultBase.html
 │   └── shareBase.html
 ├── tp.py
-└── user.py
+├── user.py
+└── verify.py
 ```
 
 ## Usage
@@ -91,7 +101,7 @@
 1. 修复若干bug
 2. 添加二维码分享功能
 
-### v0.4.0 Beta(2018/4/6)
+### v0.4.0 Beta (2018/4/6)
 
 1. 修复若干bug
 2. 添加验证码功能，post接口使用了加密字串，投票界面更加难看了
