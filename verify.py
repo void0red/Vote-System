@@ -32,7 +32,7 @@ def rand_color2():
 
 def create(width=60 * 4, height=60, num=4):
     image = Image.new('RGB', (width, height), (192, 192, 192))
-    font = ImageFont.truetype('static/arial.ttf', 36)
+    font = ImageFont.truetype('static/fonts/arial.ttf', 36)
     draw = ImageDraw.Draw(image)
     for x in range(0, width, 20):
         for y in range(0, height, 10):
