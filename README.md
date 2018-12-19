@@ -1,7 +1,5 @@
 # Vote-System
 
-[demo](http://vote.void0red.me) 地址：vote.void0red.me
-
 ## Catalog
 
 ```
